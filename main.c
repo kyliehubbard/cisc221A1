@@ -7,7 +7,7 @@ int main() {
     int charNum = 0;
 
     int c;
-    int inWord = 0; 
+    int inWord = 0; //indicates whether a character is inside a word
 
     while ((c = getchar()) != EOF) {
         charNum++;
