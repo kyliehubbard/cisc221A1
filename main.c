@@ -2,36 +2,33 @@
 #include <string.h>
 
 int main() {
-    int lineNum = 0;
-    int wordNum = 0;
-    int charNum = 0;
-
-    int c;
-    int inWord = 0; //indicates whether a character is inside a word
+    int c;  // Variable to store the current character
+    int lines = 0, words = 0, characters = 0;
+    int in_word = 0;  // Flag to check if we are in a word
 
     while ((c = getchar()) != EOF) {
-        charNum++;
+        characters++;  // Count the character
 
-        if (c == '\n' || c == ' ' || c == '\t') {
-            if (inWord) {
-                wordNum++;
-                inWord = 0;  
-            }
-            if (c == '\n') {
-                lineNum++;
-            }
-        } else {
-            inWord = 1;
+        // Check if it's a newline, increment the line counter
+         if (c == '\n') {
+             lines++;
+         }
+
+        // Check if it's a space, tab, or newline, which are word delimiters
+        if (c == ' ' || c == '\n' || c == '\t') {
+            in_word = 0;  // We are not in a word anymore
+        } else if (in_word == 0) {
+            // We found the start of a new word
+            in_word = 1;
+            words++;
         }
     }
 
-    if (inWord) {
-        wordNum++;
-    }
-
-    printf("Number of lines: %d\n", lineNum);
-    printf("Number of words: %d\n", wordNum);
-    printf("Number of characters: %d\n", charNum);
-
+    // Output the results in the format: lines, words, characters
+    printf("%d %d %d\n", lines, words, characters);
+    
     return 0;
 }
+
+
+
